@@ -66,12 +66,12 @@ O **handoff de design** está disponível no Figma:
 
 2. Clone o repositório que você acabou de forkear para a sua máquina local:  
    ```bash
-   git clone https://github.com/<seu-usuario>/<nome-do-repo>.git
+   git clone https://github.com/<seu-usuario>/yduqs-portais-desafio-fullstack.git
    ```
 
 3. Acesse a pasta do projeto:  
    ```bash
-   cd <nome-do-repo>
+   cd yduqs-portais-desafio-fullstack
    ```
 
 4. Configure e rode o **backend** e o **frontend** de acordo com os requisitos definidos.  
@@ -79,7 +79,7 @@ O **handoff de design** está disponível no Figma:
 5. Desenvolva sua solução fazendo **commits pequenos e frequentes**, para que possamos acompanhar sua linha de raciocínio e evolução.  
 
 6. Ao finalizar, envie o **link do seu fork** para avaliação.  
-   - Exemplo: `https://github.com/<seu-usuario>/<nome-do-repo>`
+   - Exemplo: `https://github.com/<seu-usuario>/yduqs-portais-desafio-fullstack`
 
 ---
 
