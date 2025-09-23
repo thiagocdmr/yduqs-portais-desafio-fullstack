@@ -35,7 +35,8 @@ O **handoff de design** está disponível no Figma:
 ### Extras (opcional, diferencial)
 - Banco em **Docker** com migrations (**Prisma, TypeORM ou Sequelize**)  
 - Logs estruturados  
-
+- Uso de bibliotecas de UI como **shadcn/ui**, **Material UI (MUI)**, **Chakra UI** ou outras similares para acelerar o desenvolvimento do frontend
+  
 ---
 
 ## ✅ Regras Importantes
