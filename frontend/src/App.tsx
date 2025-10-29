@@ -1,9 +1,14 @@
-function App() {
+import { BrowserRouter } from 'react-router-dom'
 
+import Menu from './components/Header';
+
+function App() {
   return (
-    <>
-      <h1>Vite + React</h1>
-    </>
+    <BrowserRouter>
+      <div className="max-w-[1366px] mx-auto">
+        <Menu />
+      </div>
+    </BrowserRouter>
   )
 }
 
