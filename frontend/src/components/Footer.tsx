@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <Box
             component="footer"
-            className="bg-primary-action-low text-white py-6"
+            className="bg-primary-action-low/90 text-white py-6"
         >
             <Box className="max-w-[1366px] mx-auto">
                 <Box className="flex items-center justify-between">
@@ -21,6 +21,7 @@ export default function Footer() {
                             />
                             <Typography
                                 sx={{
+                                    fontFamily: 'Inter',
                                     fontWeight: "600",
                                     fontSize: "16px",
                                     leadingTrim: "NONE",
@@ -32,7 +33,11 @@ export default function Footer() {
                                 0800 771 5055
                             </Typography>
                         </Box>
-                        <Box className="flex items-center gap-3">
+                        <Box
+                            component="a"
+                            href="#"
+                            className="flex items-center gap-3 transition-all duration-200 ease-in-out hover:scale-105"
+                        >
                             <Box
                                 component="img"
                                 src={whatsappIcon}
@@ -40,6 +45,7 @@ export default function Footer() {
                             />
                             <Typography
                                 sx={{
+                                    fontFamily: 'Inter',
                                     fontWeight: "600",
                                     fontSize: "16px",
                                     leadingTrim: "NONE",
