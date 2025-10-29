@@ -1,12 +1,14 @@
 import { BrowserRouter } from 'react-router-dom'
 
-import Menu from './components/Header';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="max-w-[1366px] mx-auto">
-        <Menu />
+      <div className="mx-auto">
+        <Header />
+        <Footer />
       </div>
     </BrowserRouter>
   )

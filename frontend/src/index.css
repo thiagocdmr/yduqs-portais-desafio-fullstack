@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary-action-pure: #144BC8;
+  --color-primary-action-low: #001F66;
+}
