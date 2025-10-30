@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useDrawer } from "../contexts/DrawerContext";
 import DrawerInfo from "./DrawerInfo";
 import InstallmentPlanList from "./InstallmentPlanList";
+import IntroBanner from "./IntroBanner";
 
 const typographyStyles = {
     title: {
@@ -50,16 +51,29 @@ export default function CourseDrawer() {
                     </IconButton>
                 </Box>
 
-                <Box className="flex-1 overflow-y-auto px-8 py-6 flex flex-col gap-4">
-                    <InstallmentPlanList courseId={selectedCourse.id} />
-                    <DrawerInfo
-                        title="Sobre a bolsa incentivo"
-                        description="Conheça os benefícios e condições da bolsa de estudos disponível para este curso."
-                    />
-                    <DrawerInfo
-                        title="Resumo das suas escolhas"
-                        description="Veja um resumo completo das opções selecionadas para sua matrícula."
-                    />
+                <Box className="flex-1 overflow-y-auto flex flex-col gap-4">
+                    {selectedCourse.type === "Presencial" ? (
+                        <InstallmentPlanList courseId={selectedCourse.id} />
+                    ) : (
+                        <IntroBanner
+                            title="Inscreva-se para saber tudo sobre os valores e garantir a sua vaga!"
+                            type="EaD"
+                        />
+                    )}
+
+                    <Box className="px-8">
+                        <Box className="mt-4" />
+                        <DrawerInfo
+                            title="Sobre a bolsa incentivo"
+                            description="Conheça os benefícios e condições da bolsa de estudos disponível para este curso."
+                        />
+                        <Box className="mt-6" />
+                        <DrawerInfo
+                            title="Resumo das suas escolhas"
+                            description="Veja um resumo completo das opções selecionadas para sua matrícula."
+                        />
+                        <Box className="mt-6" />
+                    </Box>
                 </Box>
 
                 <Box className="px-8 py-6 border-t border-gray-200">

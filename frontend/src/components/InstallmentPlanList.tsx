@@ -58,7 +58,7 @@ const radioStyles = {
 
 const boxStyles = {
     container: {
-        border: "1px solid #E5E7EB",
+        border: "1px solid #144BC8",
         borderRadius: "8px",
         overflow: "hidden",
     },
@@ -140,7 +140,7 @@ export default function InstallmentPlanList({
     }
 
     return (
-        <Box className="flex flex-col">
+        <Box className="flex flex-col pt-6 px-8">
             <Typography className="pb-4" sx={typographyStyles.title}>
                 Qual dessas opções de parcelas você prefere?
             </Typography>
@@ -173,7 +173,7 @@ export default function InstallmentPlanList({
                         <Box
                             key={plan.id}
                             sx={{
-                                borderTop: index > 0 ? "1px solid #E5E7EB" : "none",
+                                borderTop: index > 0 ? "1px solid #144BC8" : "none",
                                 ...boxStyles.listItem(selectedPlan === plan.id),
                             }}
                         >
