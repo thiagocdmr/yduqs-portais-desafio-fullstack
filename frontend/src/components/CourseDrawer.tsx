@@ -2,6 +2,7 @@ import { Drawer, Box, Typography, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDrawer } from "../contexts/DrawerContext";
 import DrawerInfo from "./DrawerInfo";
+import InstallmentPlanList from "./InstallmentPlanList";
 
 const typographyStyles = {
     title: {
@@ -32,7 +33,7 @@ export default function CourseDrawer() {
             }}
         >
             <Box className="h-full flex flex-col">
-                <Box className="flex items-center justify-between p-6 border-b border-gray-200">
+                <Box className="flex items-center justify-between pl-8 pr-4 py-6 border-b border-gray-200">
                     <Typography sx={typographyStyles.title}>
                         Mais detalhes
                     </Typography>
@@ -49,7 +50,8 @@ export default function CourseDrawer() {
                     </IconButton>
                 </Box>
 
-                <Box className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+                <Box className="flex-1 overflow-y-auto px-8 py-6 flex flex-col gap-4">
+                    <InstallmentPlanList courseId={selectedCourse.id} />
                     <DrawerInfo
                         title="Sobre a bolsa incentivo"
                         description="Conheça os benefícios e condições da bolsa de estudos disponível para este curso."
@@ -60,7 +62,7 @@ export default function CourseDrawer() {
                     />
                 </Box>
 
-                <Box className="p-6 border-t border-gray-200">
+                <Box className="px-8 py-6 border-t border-gray-200">
                     <Button
                         variant="contained"
                         fullWidth
