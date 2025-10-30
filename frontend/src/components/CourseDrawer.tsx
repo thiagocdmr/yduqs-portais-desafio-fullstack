@@ -1,6 +1,7 @@
 import { Drawer, Box, Typography, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDrawer } from "../contexts/DrawerContext";
+import DrawerInfo from "./DrawerInfo";
 
 const typographyStyles = {
     title: {
@@ -9,7 +10,7 @@ const typographyStyles = {
         fontSize: "32px",
         lineHeight: "125%",
         color: "#121212",
-    }
+    },
 };
 
 export default function CourseDrawer() {
@@ -47,8 +48,16 @@ export default function CourseDrawer() {
                         <CloseIcon sx={{ width: "24px", height: "24px" }} />
                     </IconButton>
                 </Box>
-                
-                <Box className="flex-1 overflow-y-auto p-6">
+
+                <Box className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+                    <DrawerInfo
+                        title="Sobre a bolsa incentivo"
+                        description="Conheça os benefícios e condições da bolsa de estudos disponível para este curso."
+                    />
+                    <DrawerInfo
+                        title="Resumo das suas escolhas"
+                        description="Veja um resumo completo das opções selecionadas para sua matrícula."
+                    />
                 </Box>
 
                 <Box className="p-6 border-t border-gray-200">
