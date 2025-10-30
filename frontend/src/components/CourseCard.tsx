@@ -1,6 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
+import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 
-// Estilos de tipografia padronizados
 const typographyStyles = {
     header: {
         fontFamily: "Inter",
@@ -45,6 +45,13 @@ const typographyStyles = {
         lineHeight: "150%",
         color: "white",
     },
+    description: {
+        fontFamily: "Inter",
+        fontWeight: "400",
+        fontSize: "14px",
+        lineHeight: "133%",
+        color: "white",
+    },
     locationTitle: {
         fontFamily: "Inter",
         fontWeight: "500",
@@ -67,6 +74,8 @@ interface CourseCardProps {
     currentPrice: number;
     installments: number;
     installmentValue: number;
+    type: string;
+    description: string;
     location: string;
     address: string;
 }
@@ -78,59 +87,84 @@ export default function CourseCard({
     currentPrice,
     installments,
     installmentValue,
+    type,
+    description,
     location,
     address,
 }: CourseCardProps) {
     return (
         <Box className="w-full max-w-[381px]">
             <Box className="w-full rounded-t-lg bg-primary-action-low flex flex-row items-center align-center py-2 px-4 gap-x-2">
-                <Typography sx={typographyStyles.header}>
-                    {modality}
-                </Typography>
-                <Typography sx={typographyStyles.header}>
-                    |
-                </Typography>
-                <Typography sx={typographyStyles.header}>
-                    {shift}
-                </Typography>
+                <Typography sx={typographyStyles.header}>{modality}</Typography>
+                {type === "Presencial" && (
+                    <>
+                        <Typography sx={typographyStyles.header}>|</Typography>
+                        <Typography sx={typographyStyles.header}>
+                            {shift}
+                        </Typography>
+                    </>
+                )}
             </Box>
 
             <Box className="w-full bg-primary-action-pure pt-6 pb-4 px-4">
-                <Box className="flex items-center mb-2 gap-x-1">
-                    <Typography sx={typographyStyles.priceLabel}>
-                        De
-                    </Typography>
-                    <Typography sx={typographyStyles.priceLabelStrikethrough}>
-                        R$ {"  "}
-                        {originalPrice.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                        })}
-                    </Typography>
-                    <Typography sx={typographyStyles.priceLabel}>
-                        por até
-                    </Typography>
-                </Box>
-                <Box>
-                    <Box className="flex items-baseline gap-1">
-                        <Typography sx={typographyStyles.installments}>
-                            {installments}x
-                        </Typography>
-                        <Typography sx={typographyStyles.priceMain}>
-                            R${" "}
-                            {currentPrice.toLocaleString("pt-BR", {
-                                minimumFractionDigits: 2,
-                            })}
+                {type === "Presencial" ? (
+                    <>
+                        <Box className="flex items-center mb-2 gap-x-1">
+                            <Typography sx={typographyStyles.priceLabel}>
+                                De
+                            </Typography>
+                            <Typography
+                                sx={typographyStyles.priceLabelStrikethrough}
+                            >
+                                R$ {"  "}
+                                {originalPrice.toLocaleString("pt-BR", {
+                                    minimumFractionDigits: 2,
+                                })}
+                            </Typography>
+                            <Typography sx={typographyStyles.priceLabel}>
+                                por até
+                            </Typography>
+                        </Box>
+                        <Box>
+                            <Box className="flex items-baseline gap-1">
+                                <Typography sx={typographyStyles.installments}>
+                                    {installments}x
+                                </Typography>
+                                <Typography sx={typographyStyles.priceMain}>
+                                    R${" "}
+                                    {currentPrice.toLocaleString("pt-BR", {
+                                        minimumFractionDigits: 2,
+                                    })}
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Box className="mb-6">
+                            <Typography sx={typographyStyles.priceSecondary}>
+                                à vista R${" "}
+                                {installmentValue.toLocaleString("pt-BR", {
+                                    minimumFractionDigits: 2,
+                                })}
+                            </Typography>
+                        </Box>
+                    </>
+                ) : (
+                    <Box className="mb-6">
+                        <InfoOutlineIcon
+                            sx={{
+                                width: "21.5px",
+                                height: "21.5px",
+                                color: "white",
+                            }}
+                        />
+                        <Typography
+                            className="pt-2"
+                            sx={typographyStyles.description}
+                        >
+                            {description}
                         </Typography>
                     </Box>
-                </Box>
-                <Box className="mb-6">
-                    <Typography sx={typographyStyles.priceSecondary}>
-                        à vista R${" "}
-                        {installmentValue.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                        })}
-                    </Typography>
-                </Box>
+                )}
+
                 <Button
                     variant="contained"
                     fullWidth

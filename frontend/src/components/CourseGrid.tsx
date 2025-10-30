@@ -54,6 +54,8 @@ export default function CourseGrid() {
                         currentPrice={course.installmentPrice || 0}
                         installments={course.installments || 0}
                         installmentValue={course.cashPrice || 0}
+                        type={course.type}
+                        description={course.description || ''}
                         location={`${course.location.city} - ${course.location.unit}`}
                         address={course.location.address}
                     />
