@@ -12,3 +12,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Course {
+  id               Int      @id @default(autoincrement())
+  modality         String
+  period           String?
+  originalPrice    Float?
+  installmentPrice Float?
+  installments     Int?
+  cashPrice        Float?
+  description      String?
+  type             String
+  locationCity     String
+  locationUnit     String
+  locationAddress  String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("courses")
+}
