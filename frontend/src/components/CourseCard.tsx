@@ -55,7 +55,7 @@ const typographyStyles = {
     locationAddress: {
         fontFamily: "Inter",
         fontWeight: "400",
-        fontSize: "12px",
+        fontSize: "14px",
         lineHeight: "115%",
     },
 };

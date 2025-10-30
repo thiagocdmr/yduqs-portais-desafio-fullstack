@@ -10,6 +10,12 @@ async function bootstrap() {
     logger: WinstonModule.createLogger(winstonConfig),
   });
 
+  // Enable CORS
+  app.enableCors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  });
+
   // Global Validation Pipe
   app.useGlobalPipes(
     new ValidationPipe({
