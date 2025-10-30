@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { courseService } from "../services/courseService";
 import type { InstallmentPlan } from "../types/installmentPlan";
+import { useEnrollment } from "../contexts/EnrollmentContext";
 
 interface InstallmentPlanListProps {
     courseId: number;
@@ -102,6 +103,7 @@ const formatCurrency = (value: number): string => {
 export default function InstallmentPlanList({
     courseId,
 }: InstallmentPlanListProps) {
+    const { setSelectedInstallmentPlan } = useEnrollment();
     const [installmentPlans, setInstallmentPlans] = useState<
         InstallmentPlan[]
     >([]);
@@ -115,7 +117,9 @@ export default function InstallmentPlanList({
                 const data = await courseService.getInstallmentPlans(courseId);
                 setInstallmentPlans(data);
                 if (data.length > 0) {
-                    setSelectedPlan(data[data.length - 1].id);
+                    const defaultPlan = data[data.length - 1];
+                    setSelectedPlan(defaultPlan.id);
+                    setSelectedInstallmentPlan(defaultPlan);
                 }
             } catch (error) {
                 console.error("Erro ao buscar planos de parcelamento:", error);
@@ -167,7 +171,14 @@ export default function InstallmentPlanList({
 
                 <RadioGroup
                     value={selectedPlan}
-                    onChange={(e) => setSelectedPlan(Number(e.target.value))}
+                    onChange={(e) => {
+                        const planId = Number(e.target.value);
+                        setSelectedPlan(planId);
+                        const plan = installmentPlans.find((p) => p.id === planId);
+                        if (plan) {
+                            setSelectedInstallmentPlan(plan);
+                        }
+                    }}
                 >
                     {installmentPlans.map((plan, index) => (
                         <Box

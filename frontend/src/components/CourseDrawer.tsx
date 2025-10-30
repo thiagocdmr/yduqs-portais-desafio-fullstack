@@ -1,6 +1,8 @@
 import { Drawer, Box, Typography, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
 import { useDrawer } from "../contexts/DrawerContext";
+import { useEnrollment } from "../contexts/EnrollmentContext";
 import DrawerInfo from "./DrawerInfo";
 import InstallmentPlanList from "./InstallmentPlanList";
 import IntroBanner from "./IntroBanner";
@@ -17,6 +19,8 @@ const typographyStyles = {
 
 export default function CourseDrawer() {
     const { isOpen, selectedCourse, closeDrawer } = useDrawer();
+    const { setSelectedCourse } = useEnrollment();
+    const navigate = useNavigate();
 
     if (!selectedCourse) return null;
 
@@ -94,7 +98,13 @@ export default function CourseDrawer() {
                                 backgroundColor: "#DC2626",
                             },
                         }}
-                        onClick={closeDrawer}
+                        onClick={() => {
+                            if (selectedCourse) {
+                                setSelectedCourse(selectedCourse);
+                                closeDrawer();
+                                navigate("/student-form");
+                            }
+                        }}
                     >
                         Avançar
                     </Button>
