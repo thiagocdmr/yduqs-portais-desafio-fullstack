@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import estacioLogo from "../assets/logos/estacio_white_logo.svg";
 import phoneIcon from "../assets/icons/phone_icon.svg";
 import whatsappIcon from "../assets/icons/whatsapp_icon.svg";
@@ -21,7 +22,9 @@ export default function Footer() {
         >
             <Box className="max-w-[1366px] mx-auto">
                 <Box className="flex items-center justify-between">
-                    <Box component="img" src={estacioLogo} alt="Logo Estácio" />
+                    <Link to="/">
+                        <Box component="img" src={estacioLogo} alt="Logo Estácio" sx={{ cursor: 'pointer' }} />
+                    </Link>
                     <Box className="flex gap-14">
                         <Box className="flex items-center gap-3">
                             <Box
