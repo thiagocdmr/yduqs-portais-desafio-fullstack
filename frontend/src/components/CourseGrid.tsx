@@ -48,16 +48,7 @@ export default function CourseGrid() {
                 {courses.map((course) => (
                     <CourseCard
                         key={course.id}
-                        modality={course.modality}
-                        shift={course.period || 'N/A'}
-                        originalPrice={course.originalPrice || 0}
-                        currentPrice={course.installmentPrice || 0}
-                        installments={course.installments || 0}
-                        installmentValue={course.cashPrice || 0}
-                        type={course.type}
-                        description={course.description || ''}
-                        location={`${course.location.city} - ${course.location.unit}`}
-                        address={course.location.address}
+                        course={course}
                     />
                 ))}
             </Box>
