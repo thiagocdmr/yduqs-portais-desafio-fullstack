@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { CourseResponse } from './entities/course.entity';
+import { InstallmentPlanResponse } from './entities/installment-plan.entity';
 
 @Injectable()
 export class CoursesService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(): Promise<CourseResponse[]> {
     const courses = await this.prisma.course.findMany({
       orderBy: {
         id: 'asc',
@@ -30,7 +32,9 @@ export class CoursesService {
     }));
   }
 
-  async getInstallmentPlans(courseId: number) {
+  async getInstallmentPlans(
+    courseId: number,
+  ): Promise<InstallmentPlanResponse[]> {
     const installmentPlans = await this.prisma.installmentPlan.findMany({
       where: {
         courseId,
