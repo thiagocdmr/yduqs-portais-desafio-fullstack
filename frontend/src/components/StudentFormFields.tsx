@@ -92,7 +92,6 @@ export default function StudentFormFields() {
     const [errors, setErrors] = useState<FormErrors>({});
     const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
-    // Validação de todos os campos
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {
             fullName: validateFullName(formData.fullName),
@@ -118,7 +117,6 @@ export default function StudentFormFields() {
         );
     };
 
-    // Verifica se o formulário é válido
     const isFormValid = (): boolean => {
         return (
             !errors.fullName &&
@@ -137,7 +135,6 @@ export default function StudentFormFields() {
         );
     };
 
-    // Manipuladores de mudança
     const handleChange = (field: keyof FormData) => (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -157,7 +154,6 @@ export default function StudentFormFields() {
     const handleBlur = (field: keyof FormData) => () => {
         setTouched((prev) => ({ ...prev, [field]: true }));
 
-        // Valida o campo específico
         let error: string | undefined;
         switch (field) {
             case "fullName":
@@ -186,7 +182,6 @@ export default function StudentFormFields() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Marca todos os campos como tocados
         setTouched({
             fullName: true,
             cpf: true,
@@ -222,7 +217,6 @@ export default function StudentFormFields() {
         }
     };
 
-    // Redireciona se não houver curso ou plano selecionado
     useEffect(() => {
         if (!selectedCourse || !selectedInstallmentPlan) {
             navigate("/");
