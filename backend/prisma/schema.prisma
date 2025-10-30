@@ -29,5 +29,21 @@ model Course {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
+  installmentPlans InstallmentPlan[]
+
   @@map("courses")
+}
+
+model InstallmentPlan {
+  id                Int      @id @default(autoincrement())
+  courseId          Int
+  installments      Int
+  installmentValue  Float
+  totalPrice        Float
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@map("installment_plans")
 }

@@ -29,4 +29,22 @@ export class CoursesService {
       },
     }));
   }
+
+  async getInstallmentPlans(courseId: number) {
+    const installmentPlans = await this.prisma.installmentPlan.findMany({
+      where: {
+        courseId,
+      },
+      orderBy: {
+        installments: 'asc',
+      },
+    });
+
+    return installmentPlans.map((plan) => ({
+      id: plan.id,
+      installments: plan.installments,
+      installmentValue: plan.installmentValue,
+      totalPrice: plan.totalPrice,
+    }));
+  }
 }
