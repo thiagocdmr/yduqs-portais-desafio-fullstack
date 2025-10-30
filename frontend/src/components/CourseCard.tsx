@@ -134,7 +134,7 @@ export default function CourseCard({
                 <Button
                     variant="contained"
                     fullWidth
-                    className="b-4"
+                    className="b-4 w-[333px] h-[48px]"
                     sx={{
                         backgroundColor: "#EE325D",
                         color: "white",
@@ -142,7 +142,7 @@ export default function CourseCard({
                         fontWeight: "500",
                         fontSize: "16px",
                         textTransform: "none",
-                        padding: "12px",
+                        lineHeight: "100%",
                         borderRadius: "8px",
                         "&:hover": {
                             backgroundColor: "#DC2626",

@@ -3,6 +3,16 @@ import estacioLogo from "../assets/logos/estacio_white_logo.svg";
 import phoneIcon from "../assets/icons/phone_icon.svg";
 import whatsappIcon from "../assets/icons/whatsapp_icon.svg";
 
+const typographyStyle = {
+    fontFamily: 'Inter',
+    fontWeight: "600",
+    fontSize: "16px",
+    leadingTrim: "NONE",
+    lineHeight: "150%",
+    letterSpacing: "0%",
+    color: "white",
+};
+
 export default function Footer() {
     return (
         <Box
@@ -19,17 +29,7 @@ export default function Footer() {
                                 src={phoneIcon}
                                 alt="Telefone"
                             />
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: "600",
-                                    fontSize: "16px",
-                                    leadingTrim: "NONE",
-                                    lineHeight: "150%",
-                                    letterSpacing: "0%",
-                                    color: "white",
-                                }}
-                            >
+                            <Typography sx={typographyStyle}>
                                 0800 771 5055
                             </Typography>
                         </Box>
@@ -43,17 +43,7 @@ export default function Footer() {
                                 src={whatsappIcon}
                                 alt="WhatsApp"
                             />
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: "600",
-                                    fontSize: "16px",
-                                    leadingTrim: "NONE",
-                                    lineHeight: "150%",
-                                    letterSpacing: "0%",
-                                    color: "white",
-                                }}
-                            >
+                            <Typography sx={typographyStyle}>
                                 Precisa de ajuda?
                             </Typography>
                         </Box>
