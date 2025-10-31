@@ -5,6 +5,7 @@ import {
   IsNumber,
   IsPositive,
   IsNotEmpty,
+  IsOptional,
   ValidateNested,
 } from 'class-validator';
 import { CreateStudentDto } from '../../students/dto/create-student.dto';
@@ -22,29 +23,32 @@ export class PaymentInfoDto {
   @ApiProperty({
     description: 'Número de parcelas',
     example: 12,
+    required: false,
   })
+  @IsOptional()
   @IsInt({ message: 'Número de parcelas deve ser um número inteiro' })
   @IsPositive({ message: 'Número de parcelas deve ser positivo' })
-  @IsNotEmpty({ message: 'Número de parcelas é obrigatório' })
-  installments: number;
+  installments?: number;
 
   @ApiProperty({
     description: 'Valor de cada parcela',
     example: 299.9,
+    required: false,
   })
+  @IsOptional()
   @IsNumber({}, { message: 'Valor da parcela deve ser um número' })
   @IsPositive({ message: 'Valor da parcela deve ser positivo' })
-  @IsNotEmpty({ message: 'Valor da parcela é obrigatório' })
-  installmentValue: number;
+  installmentValue?: number;
 
   @ApiProperty({
     description: 'Valor total do curso',
     example: 3598.8,
+    required: false,
   })
+  @IsOptional()
   @IsNumber({}, { message: 'Valor total deve ser um número' })
   @IsPositive({ message: 'Valor total deve ser positivo' })
-  @IsNotEmpty({ message: 'Valor total é obrigatório' })
-  totalPrice: number;
+  totalPrice?: number;
 }
 
 export class CreateEnrollmentDto {

@@ -23,20 +23,23 @@ export class EnrollmentResponse {
   @ApiProperty({
     description: 'Número de parcelas',
     example: 12,
+    required: false,
   })
-  installments: number;
+  installments?: number;
 
   @ApiProperty({
     description: 'Valor de cada parcela',
     example: 299.9,
+    required: false,
   })
-  installmentValue: number;
+  installmentValue?: number;
 
   @ApiProperty({
     description: 'Valor total do curso',
     example: 3598.8,
+    required: false,
   })
-  totalPrice: number;
+  totalPrice?: number;
 
   @ApiProperty({
     description: 'Data de criação',
