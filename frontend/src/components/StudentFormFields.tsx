@@ -4,9 +4,10 @@ import {
     TextField,
     Button,
     Checkbox,
-    FormControlLabel,
     Typography,
     Link,
+    CircularProgress,
+    Alert,
 } from "@mui/material";
 import { useEnrollment } from "../contexts/EnrollmentContext";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,7 @@ import {
     formatCPF,
     formatPhone,
 } from "../utils/validations";
+import { enrollmentService } from "../services/enrollmentService";
 
 interface FormData {
     fullName: string;
@@ -91,6 +93,9 @@ export default function StudentFormFields() {
 
     const [errors, setErrors] = useState<FormErrors>({});
     const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
 
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {
@@ -179,7 +184,7 @@ export default function StudentFormFields() {
         setErrors((prev) => ({ ...prev, [field]: error }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         setTouched({
@@ -191,9 +196,21 @@ export default function StudentFormFields() {
             highSchoolCompletionYear: true,
         });
 
-        if (validateForm()) {
-            // TODO: Enviar dados para o backend
-            console.log("Formulário válido:", {
+        if (!validateForm()) {
+            return;
+        }
+
+        if (!selectedCourse || !selectedInstallmentPlan) {
+            setSubmitError("Curso ou plano de pagamento não selecionado.");
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitError(null);
+        setSubmitSuccess(false);
+
+        try {
+            const enrollmentData = {
                 student: {
                     fullName: formData.fullName,
                     cpf: formData.cpf,
@@ -208,12 +225,32 @@ export default function StudentFormFields() {
                         formData.receiveWhatsappNotifications,
                 },
                 paymentInfo: {
-                    courseId: selectedCourse?.id,
-                    installments: selectedInstallmentPlan?.installments,
-                    installmentValue: selectedInstallmentPlan?.installmentValue,
-                    totalPrice: selectedInstallmentPlan?.totalPrice,
+                    courseId: selectedCourse.id,
+                    installments: selectedInstallmentPlan.installments,
+                    installmentValue: selectedInstallmentPlan.installmentValue,
+                    totalPrice: selectedInstallmentPlan.totalPrice,
                 },
-            });
+            };
+
+            await enrollmentService.createEnrollment(enrollmentData);
+            setSubmitSuccess(true);
+            setTimeout(() => {
+                navigate("/success");
+            }, 2000);
+        } catch (error: any) {
+            console.error("Erro ao criar matrícula:", error);
+            
+            if (error.response?.status === 409) {
+                setSubmitError("CPF ou e-mail já cadastrado. Por favor, verifique seus dados.");
+            } else if (error.response?.status === 404) {
+                setSubmitError("Curso não encontrado. Por favor, selecione novamente.");
+            } else if (error.response?.data?.message) {
+                setSubmitError(error.response.data.message);
+            } else {
+                setSubmitError("Erro ao processar sua matrícula. Por favor, tente novamente.");
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -230,6 +267,11 @@ export default function StudentFormFields() {
             className="max-w-[1366px] mx-auto py-8"
             sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
         >
+            {submitError && (
+                <Alert severity="error" sx={{ width: "680px", mb: 2 }}>
+                    {submitError}
+                </Alert>
+            )}
             <TextField
                 label="Nome completo"
                 value={formData.fullName}
@@ -386,7 +428,7 @@ export default function StudentFormFields() {
                 <Button
                     type="submit"
                     variant="contained"
-                    disabled={!isFormValid()}
+                    disabled={!isFormValid() || isSubmitting}
                     sx={{
                         backgroundColor: "#144BC8",
                         color: "white",
@@ -410,7 +452,14 @@ export default function StudentFormFields() {
                         },
                     }}
                 >
-                    Avançar
+                    {isSubmitting ? (
+                        <>
+                            <CircularProgress size={20} sx={{ color: "white", mr: 1 }} />
+                            Processando...
+                        </>
+                    ) : (
+                        "Avançar"
+                    )}
                 </Button>
             </Box>
         </Box>
