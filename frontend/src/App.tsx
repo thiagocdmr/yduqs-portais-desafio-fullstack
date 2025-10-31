@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import StudentForm from './pages/StudentForm';
+import Success from './pages/Success';
 import { CourseProvider } from './contexts/CourseContext';
 import { DrawerProvider } from './contexts/DrawerContext';
 import { EnrollmentProvider } from './contexts/EnrollmentContext';
@@ -20,6 +21,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/student-form" element={<StudentForm />} />
+                <Route path="/success" element={<Success />} />
               </Routes>
               <Footer />
               <CourseDrawer />

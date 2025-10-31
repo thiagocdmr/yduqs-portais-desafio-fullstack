@@ -95,7 +95,6 @@ export default function StudentFormFields() {
     const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
-    const [submitSuccess, setSubmitSuccess] = useState(false);
 
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {
@@ -207,7 +206,6 @@ export default function StudentFormFields() {
 
         setIsSubmitting(true);
         setSubmitError(null);
-        setSubmitSuccess(false);
 
         try {
             const enrollmentData = {
@@ -233,7 +231,6 @@ export default function StudentFormFields() {
             };
 
             await enrollmentService.createEnrollment(enrollmentData);
-            setSubmitSuccess(true);
             setTimeout(() => {
                 navigate("/success");
             }, 2000);
