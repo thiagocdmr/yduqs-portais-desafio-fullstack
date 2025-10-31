@@ -5,13 +5,14 @@
 /build
 
 # Logs
-logs
+logs/*.log
 *.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+!logs/.gitkeep
 
 # dotenv environment variable files
 .env
