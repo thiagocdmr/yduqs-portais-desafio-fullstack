@@ -19,7 +19,7 @@ const typographyStyles = {
 
 export default function CourseDrawer() {
     const { isOpen, selectedCourse, closeDrawer } = useDrawer();
-    const { setSelectedCourse } = useEnrollment();
+    const { setSelectedCourse, setSelectedInstallmentPlan } = useEnrollment();
     const navigate = useNavigate();
 
     if (!selectedCourse) return null;
@@ -101,6 +101,9 @@ export default function CourseDrawer() {
                         onClick={() => {
                             if (selectedCourse) {
                                 setSelectedCourse(selectedCourse);
+                                if (selectedCourse.type !== "Presencial") {
+                                    setSelectedInstallmentPlan(null);
+                                }
                                 closeDrawer();
                                 navigate("/student-form");
                             }

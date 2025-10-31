@@ -13,9 +13,9 @@ export interface StudentData {
 
 export interface PaymentInfo {
     courseId: number;
-    installments: number;
-    installmentValue: number;
-    totalPrice: number;
+    installments?: number;
+    installmentValue?: number;
+    totalPrice?: number;
 }
 
 export interface CreateEnrollmentRequest {
@@ -26,9 +26,9 @@ export interface CreateEnrollmentRequest {
 export interface EnrollmentResponse {
     id: number;
     courseId: number;
-    installments: number;
-    installmentValue: number;
-    totalPrice: number;
+    installments?: number;
+    installmentValue?: number;
+    totalPrice?: number;
     createdAt: string;
     student: {
         id: number;

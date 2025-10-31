@@ -199,8 +199,13 @@ export default function StudentFormFields() {
             return;
         }
 
-        if (!selectedCourse || !selectedInstallmentPlan) {
-            setSubmitError("Curso ou plano de pagamento não selecionado.");
+        if (!selectedCourse) {
+            setSubmitError("Curso não selecionado.");
+            return;
+        }
+
+        if (selectedCourse.type === "Presencial" && !selectedInstallmentPlan) {
+            setSubmitError("Plano de pagamento não selecionado.");
             return;
         }
 
@@ -224,18 +229,20 @@ export default function StudentFormFields() {
                 },
                 paymentInfo: {
                     courseId: selectedCourse.id,
-                    installments: selectedInstallmentPlan.installments,
-                    installmentValue: selectedInstallmentPlan.installmentValue,
-                    totalPrice: selectedInstallmentPlan.totalPrice,
+                    ...(selectedInstallmentPlan && {
+                        installments: selectedInstallmentPlan.installments,
+                        installmentValue: selectedInstallmentPlan.installmentValue,
+                        totalPrice: selectedInstallmentPlan.totalPrice,
+                    }),
                 },
             };
 
             await enrollmentService.createEnrollment(enrollmentData);
-            setTimeout(() => {
-                navigate("/success");
-            }, 2000);
+            navigate("/success");
         } catch (error: any) {
             console.error("Erro ao criar matrícula:", error);
+            
+            setIsSubmitting(false);
             
             if (error.response?.status === 409) {
                 setSubmitError("CPF ou e-mail já cadastrado. Por favor, verifique seus dados.");
@@ -246,13 +253,13 @@ export default function StudentFormFields() {
             } else {
                 setSubmitError("Erro ao processar sua matrícula. Por favor, tente novamente.");
             }
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
     useEffect(() => {
-        if (!selectedCourse || !selectedInstallmentPlan) {
+        if (!selectedCourse) {
+            navigate("/");
+        } else if (selectedCourse.type === "Presencial" && !selectedInstallmentPlan) {
             navigate("/");
         }
     }, [selectedCourse, selectedInstallmentPlan, navigate]);
@@ -264,11 +271,6 @@ export default function StudentFormFields() {
             className="max-w-[1366px] mx-auto py-8"
             sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
         >
-            {submitError && (
-                <Alert severity="error" sx={{ width: "680px", mb: 2 }}>
-                    {submitError}
-                </Alert>
-            )}
             <TextField
                 label="Nome completo"
                 value={formData.fullName}
@@ -459,6 +461,11 @@ export default function StudentFormFields() {
                     )}
                 </Button>
             </Box>
+            {submitError && (
+                <Alert severity="error" sx={{ width: "680px" }}>
+                    {submitError}
+                </Alert>
+            )}
         </Box>
     );
 }
