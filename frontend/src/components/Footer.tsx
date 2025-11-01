@@ -30,13 +30,14 @@ export default function Footer() {
     const isStudentForm = location.pathname === "/student-form";
 
     const contactBox = (
-        <Box sx={{ display: "flex", gap: "56px" }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <Box component="img" src={phoneIcon} alt="Telefone" />
-                <Typography sx={contactTypographyStyle}>
-                    0800 771 5055
-                </Typography>
-            </Box>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: { xs: "flex-start", md: "flex-start" },
+                gap: { xs: "24px", md: "56px" },
+            }}
+        >
             <Box
                 component="a"
                 href="#"
@@ -46,11 +47,26 @@ export default function Footer() {
                     gap: "12px",
                     transition: "all 0.2s ease-in-out",
                     "&:hover": { transform: "scale(1.05)" },
+                    textDecoration: "none",
+                    order: { xs: 1, md: 2 },
                 }}
             >
                 <Box component="img" src={whatsappIcon} alt="WhatsApp" />
                 <Typography sx={contactTypographyStyle}>
                     Precisa de ajuda?
+                </Typography>
+            </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    order: { xs: 2, md: 1 },
+                }}
+            >
+                <Box component="img" src={phoneIcon} alt="Telefone" />
+                <Typography sx={contactTypographyStyle}>
+                    0800 771 5055
                 </Typography>
             </Box>
         </Box>
@@ -62,15 +78,19 @@ export default function Footer() {
             sx={{
                 backgroundColor: "rgba(0, 31, 102, 0.9)",
                 color: "white",
-                py: "24px",
+                pt: { xs: "16px", md: "24px" },
+                pb: "24px",
+                px: { xs: "16px", md: "0" },
             }}
         >
             <Box sx={{ maxWidth: "1366px", mx: "auto" }}>
                 <Box
                     sx={{
                         display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
+                        flexDirection: { xs: "column", md: "row" },
+                        alignItems: { xs: "flex-start", md: "flex-start" },
+                        justifyContent: { xs: "flex-start", md: "space-between" },
+                        gap: { xs: "24px", md: "0" },
                     }}
                 >
                     {!isStudentForm && (
@@ -88,8 +108,10 @@ export default function Footer() {
                         <Box
                             sx={{
                                 display: "flex",
-                                alignItems: "center",
-                                gap: "16px",
+                                flexDirection: { xs: "column", md: "row" },
+                                justifyContent: { xs: "flex-start", md: "flex-start" },
+                                alignItems: { xs: "flex-start", md: "center" },
+                                gap: { xs: "4px", md: "16px" },
                             }}
                         >
                             <Link
@@ -110,10 +132,10 @@ export default function Footer() {
                                     Política de privacidade
                                 </Typography>
                             </Link>
-                            <Typography sx={{ ...typographyStyle }}>
+                            <Typography sx={{ ...typographyStyle, display: { xs: "none", md: "block" } }}>
                                 |
                             </Typography>
-                            <Typography sx={{ ...typographyStyle }}>
+                            <Typography sx={{ ...typographyStyle, paddingTop: { xs: "4px", md: "0" } }}>
                                 Estácio Brasil - Todos os direitos reservados
                             </Typography>
                         </Box>
