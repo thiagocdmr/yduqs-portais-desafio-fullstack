@@ -10,10 +10,12 @@ import { CourseProvider } from "./contexts/CourseContext";
 import { DrawerProvider } from "./contexts/DrawerContext";
 import { EnrollmentProvider } from "./contexts/EnrollmentContext";
 import CourseDrawer from "./components/CourseDrawer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <CourseProvider>
                 <EnrollmentProvider>
                     <DrawerProvider>
