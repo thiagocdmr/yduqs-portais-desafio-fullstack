@@ -1,73 +1,167 @@
-# React + TypeScript + Vite
+# 🎨 Frontend - Sistema de Matrículas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web desenvolvida com React, TypeScript, Vite e Material-UI para o sistema de matrículas de cursos.
 
-Currently, two official plugins are available:
+## 📋 Índice
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Stack Tecnológica](#-stack-tecnológica)
+- [Pré-requisitos](#-pré-requisitos)
+- [Instalação e Configuração](#-instalação-e-configuração)
+- [Executando a Aplicação](#-executando-a-aplicação)
+- [Testes](#-testes)
+- [Build para Produção](#-build-para-produção)
+- [Scripts Disponíveis](#-scripts-disponíveis)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Variáveis de Ambiente](#-variáveis-de-ambiente)
 
-## React Compiler
+## 🛠️ Stack Tecnológica
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React 19.x
+- **Linguagem**: TypeScript 5.x
+- **Build Tool**: Vite 7.x
+- **UI Framework**: Material-UI (MUI) 7.x
+- **Roteamento**: React Router DOM 7.x
+- **HTTP Client**: Axios 1.x
+- **Validação**: Brazilian Utils (CPF, telefone)
+- **Testes**: Vitest + React Testing Library
+- **Ícones**: Material Icons
 
-## Expanding the ESLint configuration
+## ⚙️ Pré-requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Node.js** >= 18.x ([Download](https://nodejs.org/))
+- **npm** >= 9.x (vem com o Node.js)
+- **Backend rodando** na porta 3000 (veja o README do backend)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Para verificar se estão instalados corretamente:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+node --version
+npm --version
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Instalação e Configuração
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Instalar Dependências
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 2. Configurar Variáveis de Ambiente
+
+Copie o arquivo `.env.example` para `.env`:
+
+```bash
+# Windows (PowerShell)
+Copy-Item .env.example .env
+
+# Linux/Mac
+cp .env.example .env
+```
+
+Edite o arquivo `.env` conforme necessário. A variável padrão é:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+> ⚠️ **Importante**: Certifique-se de que a URL aponta para o backend em execução. Se o backend estiver rodando em outra porta, ajuste a variável.
+
+### 3. Verificar Backend
+
+Antes de iniciar o frontend, certifique-se de que o backend está rodando:
+
+1. Navegue até a pasta `backend`
+2. Siga as instruções do README do backend
+3. Verifique se o backend está acessível em `http://localhost:3000`
+4. Teste acessando `http://localhost:3000/api/docs` (Swagger)
+
+## ▶️ Executando a Aplicação
+
+### Modo Desenvolvimento
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível em: **http://localhost:5173**
+
+
+
+## 🧪 Testes
+
+### Executar Testes
+
+Executa todos os testes em modo watch:
+
+```bash
+npm run test
+```
+
+### Cobertura de Testes
+
+Gera relatório de cobertura de código:
+
+```bash
+npm run test:coverage
+```
+
+O relatório será gerado e exibido no terminal. Para visualizar em HTML, verifique a pasta de cobertura gerada.
+
+Acesse: **http://localhost:4173**
+
+## 📜 Scripts Disponíveis
+
+| Script | Descrição |
+|--------|-----------|
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Compila o projeto para produção |
+| `npm run preview` | Preview da build de produção |
+| `npm run lint` | Executa o linter (ESLint) |
+| `npm run test` | Executa testes em modo watch |
+| `npm run test:ui` | Abre interface gráfica de testes |
+| `npm run test:coverage` | Gera relatório de cobertura |
+
+## 📁 Estrutura do Projeto
+
+```
+frontend/
+├── public/
+│   └── vite.svg           # Favicon e assets públicos
+├── src/
+│   ├── __tests__/         # Testes unitários
+│   ├── assets/            # Imagens, ícones, etc.
+│   ├── components/        # Componentes reutilizáveis
+│   │   ├── CourseCard.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── ScrollToTop.tsx
+│   │   └── StudentFormFields.tsx
+│   ├── contexts/          # Context API (estado global)
+│   ├── hooks/             # Custom hooks
+│   ├── pages/             # Páginas/rotas
+│   │   ├── Home.tsx
+│   │   ├── StudentForm.tsx
+│   │   └── Success.tsx
+│   ├── services/          # Serviços (API calls)
+│   ├── types/             # Tipos TypeScript
+│   ├── utils/             # Funções utilitárias
+│   ├── App.tsx            # Componente principal
+│   ├── main.tsx           # Ponto de entrada
+│   └── index.css          # Estilos globais
+├── .env.example           # Exemplo de variáveis de ambiente
+├── .env                   # Variáveis de ambiente (não versionado)
+├── vite.config.ts         # Configuração do Vite
+├── tsconfig.json          # Configuração do TypeScript
+└── package.json           # Dependências e scripts
+```
+
+## 🔐 Variáveis de Ambiente
+
+| Variável | Descrição | Valor Padrão |
+|----------|-----------|--------------|
+| `VITE_API_URL` | URL base da API backend | `http://localhost:3000` |
+
+> 📝 **Nota**: Todas as variáveis de ambiente no Vite devem começar com `VITE_` para serem expostas ao código do cliente.
