@@ -80,7 +80,7 @@ export default function CourseCard({ course }: CourseCardProps) {
         openDrawer(course);
     };
     return (
-        <Box sx={{ width: "100%", maxWidth: "381px" }}>
+        <Box sx={{ width: "100%", maxWidth: { xs: "100%", md: "381px" } }}>
             <Box
                 sx={{
                     borderTopLeftRadius: "8px",

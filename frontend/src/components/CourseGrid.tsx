@@ -12,8 +12,9 @@ export default function CourseGrid() {
                 sx={{
                     maxWidth: "1366px",
                     mx: "auto",
-                    pt: "32px",
-                    pb: "56px",
+                    pt: { xs: "24px", md: "32px" },
+                    pb: { xs: "24px", md: "56px" },
+                    px: { xs: "16px", md: "0" },
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -28,7 +29,13 @@ export default function CourseGrid() {
         return (
             <Box
                 component="section"
-                sx={{ maxWidth: "1366px", mx: "auto", pt: "32px", pb: "56px" }}
+                sx={{
+                    maxWidth: "1366px",
+                    mx: "auto",
+                    pt: { xs: "24px", md: "32px" },
+                    pb: { xs: "24px", md: "56px" },
+                    px: { xs: "16px", md: "0" },
+                }}
             >
                 <Alert severity="error">{error}</Alert>
             </Box>
@@ -38,7 +45,13 @@ export default function CourseGrid() {
     return (
         <Box
             component="section"
-            sx={{ maxWidth: "1366px", mx: "auto", pt: "32px", pb: "56px" }}
+            sx={{
+                maxWidth: "1366px",
+                mx: "auto",
+                pt: { xs: "24px", md: "32px" },
+                pb: { xs: "24px", md: "56px" },
+                px: { xs: "16px", md: "0" },
+            }}
         >
             <Typography
                 sx={{
@@ -48,6 +61,8 @@ export default function CourseGrid() {
                     lineHeight: "133%",
                     letterSpacing: "0%",
                     color: "neutral-dark-pure",
+                    display: { xs: "none", md: "block" },
+
                 }}
             >
                 {courses.length}{" "}
@@ -58,7 +73,7 @@ export default function CourseGrid() {
             <Box
                 sx={{
                     display: "flex",
-                    mt: "16px",
+                    mt: { xs: "0px", md: "16px" },
                     gap: "24px",
                     flexWrap: "wrap",
                 }}
