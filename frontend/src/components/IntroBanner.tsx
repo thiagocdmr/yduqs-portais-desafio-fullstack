@@ -13,7 +13,12 @@ export default function IntroBanner({
     return (
         <Box
             component="section"
-            sx={{ backgroundColor: "#144BC8", color: "white", py: "40px" }}
+            sx={{
+                backgroundColor: "#144BC8",
+                color: "white",
+                py: { xs: "24px", md: "40px" },
+                px: { xs: "16px", md: "0" },
+            }}
         >
             <Box sx={{ maxWidth: "1366px", mx: "auto" }}>
                 {type !== "EaD" ? (
