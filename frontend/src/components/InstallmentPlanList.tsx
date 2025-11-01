@@ -20,7 +20,7 @@ const typographyStyles = {
         fontFamily: "Inter",
         fontWeight: "500",
         fontSize: "16px",
-        lineHeight: "130%",
+        lineHeight: "135%",
         color: "#121212",
     },
     headerLabel: {
@@ -48,7 +48,7 @@ const typographyStyles = {
 
 const radioStyles = {
     color: "#121212",
-    padding: "8px",
+    padding: { xs: "12px", md: "8px" },
     "&.Mui-checked": {
         color: "#121212",
     },
@@ -155,8 +155,8 @@ export default function InstallmentPlanList({
             sx={{
                 display: "flex",
                 flexDirection: "column",
-                pt: "24px",
-                px: "32px",
+                pt: { xs: "16px", md: "24px" },
+                px: { xs: "16px", md: "32px" },
             }}
         >
             <Typography sx={{ ...typographyStyles.title, pb: "16px" }}>
@@ -168,7 +168,7 @@ export default function InstallmentPlanList({
                     <Typography
                         sx={{
                             ...typographyStyles.headerLabel,
-                            minWidth: "75%",
+                            minWidth: { xs: "62%", md: "75%" },
                         }}
                     >
                         Parcelas
@@ -213,7 +213,7 @@ export default function InstallmentPlanList({
                                         <Typography
                                             sx={{
                                                 ...typographyStyles.installmentValue,
-                                                minWidth: "75%",
+                                                minWidth: { xs: "60%", md: "75%" },
                                             }}
                                         >
                                             {plan.installments}x{" "}

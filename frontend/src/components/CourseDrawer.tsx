@@ -32,8 +32,8 @@ export default function CourseDrawer() {
             sx={{
                 "& .MuiDrawer-paper": {
                     width: "40%",
-                    minWidth: "400px",
-                    maxWidth: "600px",
+                    minWidth: { xs: "100%", md: "400px" },
+                    maxWidth: { xs: "100%", md: "600px" },
                 },
             }}
         >
@@ -49,9 +49,9 @@ export default function CourseDrawer() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        pl: "32px",
-                        pr: "16px",
-                        py: "24px",
+                        pl: { xs: "16px", md: "32px" },
+                        pr: { xs: "16px", md: "16px" },
+                        py: { xs: "20px", md: "24px" },
                         borderBottom: "1px solid #E5E7EB",
                     }}
                 >
