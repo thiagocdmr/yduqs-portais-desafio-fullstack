@@ -104,9 +104,9 @@ export default function InstallmentPlanList({
     courseId,
 }: InstallmentPlanListProps) {
     const { setSelectedInstallmentPlan } = useEnrollment();
-    const [installmentPlans, setInstallmentPlans] = useState<
-        InstallmentPlan[]
-    >([]);
+    const [installmentPlans, setInstallmentPlans] = useState<InstallmentPlan[]>(
+        []
+    );
     const [loading, setLoading] = useState(true);
     const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
 
@@ -133,7 +133,14 @@ export default function InstallmentPlanList({
 
     if (loading) {
         return (
-            <Box className="flex justify-center items-center py-8">
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    py: "32px",
+                }}
+            >
                 <CircularProgress sx={{ color: "#2563EB" }} />
             </Box>
         );
@@ -144,8 +151,15 @@ export default function InstallmentPlanList({
     }
 
     return (
-        <Box className="flex flex-col pt-6 px-8">
-            <Typography className="pb-4" sx={typographyStyles.title}>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                pt: "24px",
+                px: "32px",
+            }}
+        >
+            <Typography sx={{ ...typographyStyles.title, pb: "16px" }}>
                 Qual dessas opções de parcelas você prefere?
             </Typography>
 
@@ -174,7 +188,9 @@ export default function InstallmentPlanList({
                     onChange={(e) => {
                         const planId = Number(e.target.value);
                         setSelectedPlan(planId);
-                        const plan = installmentPlans.find((p) => p.id === planId);
+                        const plan = installmentPlans.find(
+                            (p) => p.id === planId
+                        );
                         if (plan) {
                             setSelectedInstallmentPlan(plan);
                         }
@@ -184,7 +200,8 @@ export default function InstallmentPlanList({
                         <Box
                             key={plan.id}
                             sx={{
-                                borderTop: index > 0 ? "1px solid #144BC8" : "none",
+                                borderTop:
+                                    index > 0 ? "1px solid #144BC8" : "none",
                                 ...boxStyles.listItem(selectedPlan === plan.id),
                             }}
                         >
@@ -200,9 +217,13 @@ export default function InstallmentPlanList({
                                             }}
                                         >
                                             {plan.installments}x{" "}
-                                            {formatCurrency(plan.installmentValue)}
+                                            {formatCurrency(
+                                                plan.installmentValue
+                                            )}
                                         </Typography>
-                                        <Typography sx={typographyStyles.totalValue}>
+                                        <Typography
+                                            sx={typographyStyles.totalValue}
+                                        >
                                             {formatCurrency(plan.totalPrice)}
                                         </Typography>
                                     </Box>

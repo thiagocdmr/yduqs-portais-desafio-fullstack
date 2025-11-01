@@ -139,21 +139,23 @@ export default function StudentFormFields() {
         );
     };
 
-    const handleChange = (field: keyof FormData) => (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        let value: string | boolean = e.target.value;
+    const handleChange =
+        (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+            let value: string | boolean = e.target.value;
 
-        if (field === "cpf") {
-            value = formatCPF(value as string);
-        } else if (field === "phone") {
-            value = formatPhone(value as string);
-        } else if (field === "agreeToTerms" || field === "receiveWhatsappNotifications") {
-            value = e.target.checked;
-        }
+            if (field === "cpf") {
+                value = formatCPF(value as string);
+            } else if (field === "phone") {
+                value = formatPhone(value as string);
+            } else if (
+                field === "agreeToTerms" ||
+                field === "receiveWhatsappNotifications"
+            ) {
+                value = e.target.checked;
+            }
 
-        setFormData((prev) => ({ ...prev, [field]: value }));
-    };
+            setFormData((prev) => ({ ...prev, [field]: value }));
+        };
 
     const handleBlur = (field: keyof FormData) => () => {
         setTouched((prev) => ({ ...prev, [field]: true }));
@@ -176,7 +178,9 @@ export default function StudentFormFields() {
                 error = validatePhone(formData.phone);
                 break;
             case "highSchoolCompletionYear":
-                error = validateHighSchoolYear(formData.highSchoolCompletionYear);
+                error = validateHighSchoolYear(
+                    formData.highSchoolCompletionYear
+                );
                 break;
         }
 
@@ -231,7 +235,8 @@ export default function StudentFormFields() {
                     courseId: selectedCourse.id,
                     ...(selectedInstallmentPlan && {
                         installments: selectedInstallmentPlan.installments,
-                        installmentValue: selectedInstallmentPlan.installmentValue,
+                        installmentValue:
+                            selectedInstallmentPlan.installmentValue,
                         totalPrice: selectedInstallmentPlan.totalPrice,
                     }),
                 },
@@ -241,17 +246,23 @@ export default function StudentFormFields() {
             navigate("/success");
         } catch (error: any) {
             console.error("Erro ao criar matrícula:", error);
-            
+
             setIsSubmitting(false);
-            
+
             if (error.response?.status === 409) {
-                setSubmitError("CPF ou e-mail já cadastrado. Por favor, verifique seus dados.");
+                setSubmitError(
+                    "CPF ou e-mail já cadastrado. Por favor, verifique seus dados."
+                );
             } else if (error.response?.status === 404) {
-                setSubmitError("Curso não encontrado. Por favor, selecione novamente.");
+                setSubmitError(
+                    "Curso não encontrado. Por favor, selecione novamente."
+                );
             } else if (error.response?.data?.message) {
                 setSubmitError(error.response.data.message);
             } else {
-                setSubmitError("Erro ao processar sua matrícula. Por favor, tente novamente.");
+                setSubmitError(
+                    "Erro ao processar sua matrícula. Por favor, tente novamente."
+                );
             }
         }
     };
@@ -259,7 +270,10 @@ export default function StudentFormFields() {
     useEffect(() => {
         if (!selectedCourse) {
             navigate("/");
-        } else if (selectedCourse.type === "Presencial" && !selectedInstallmentPlan) {
+        } else if (
+            selectedCourse.type === "Presencial" &&
+            !selectedInstallmentPlan
+        ) {
             navigate("/");
         }
     }, [selectedCourse, selectedInstallmentPlan, navigate]);
@@ -268,8 +282,14 @@ export default function StudentFormFields() {
         <Box
             component="form"
             onSubmit={handleSubmit}
-            className="max-w-[1366px] mx-auto py-8"
-            sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
+            sx={{
+                maxWidth: "1366px",
+                mx: "auto",
+                py: "32px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+            }}
         >
             <TextField
                 label="Nome completo"
@@ -282,7 +302,8 @@ export default function StudentFormFields() {
                         errors.fullName
                     ) : (
                         <span>
-                            Preencha seu nome completo, sem abreviações, igual ao seu documento de identificação.{" "}
+                            Preencha seu nome completo, sem abreviações, igual
+                            ao seu documento de identificação.{" "}
                             <Link href="#" sx={typographyStyles.link}>
                                 Confira o exemplo.
                             </Link>
@@ -363,7 +384,14 @@ export default function StudentFormFields() {
                 margin="normal"
             />
 
-            <Box className="mt-6" sx={{ width: "680px", display: "flex", alignItems: "flex-start" }}>
+            <Box
+                sx={{
+                    mt: "24px",
+                    width: "680px",
+                    display: "flex",
+                    alignItems: "flex-start",
+                }}
+            >
                 <Checkbox
                     checked={formData.agreeToTerms}
                     onChange={handleChange("agreeToTerms")}
@@ -385,8 +413,8 @@ export default function StudentFormFields() {
                         termos do edital
                     </Link>
                     , bem como com o tratamento dos meus dados para fins de
-                    prospecção dos serviços educacionais prestados pela Estácio e
-                    demais instituições de ensino do mesmo{" "}
+                    prospecção dos serviços educacionais prestados pela Estácio
+                    e demais instituições de ensino do mesmo{" "}
                     <Link
                         href="#"
                         sx={typographyStyles.link}
@@ -406,7 +434,14 @@ export default function StudentFormFields() {
                 </Typography>
             </Box>
 
-            <Box className="mt-6" sx={{ width: "680px", display: "flex", alignItems: "flex-start" }}>
+            <Box
+                sx={{
+                    mt: "24px",
+                    width: "680px",
+                    display: "flex",
+                    alignItems: "flex-start",
+                }}
+            >
                 <Checkbox
                     checked={formData.receiveWhatsappNotifications}
                     onChange={handleChange("receiveWhatsappNotifications")}
@@ -419,11 +454,12 @@ export default function StudentFormFields() {
                     }}
                 />
                 <Typography sx={typographyStyles.checkboxLabel}>
-                    Aceito receber atualizações sobre minha inscrição pelo WhatsApp.
+                    Aceito receber atualizações sobre minha inscrição pelo
+                    WhatsApp.
                 </Typography>
             </Box>
 
-            <Box className="mt-8">
+            <Box sx={{ mt: "32px" }}>
                 <Button
                     type="submit"
                     variant="contained"
@@ -453,7 +489,10 @@ export default function StudentFormFields() {
                 >
                     {isSubmitting ? (
                         <>
-                            <CircularProgress size={20} sx={{ color: "white", mr: 1 }} />
+                            <CircularProgress
+                                size={20}
+                                sx={{ color: "white", mr: "4px" }}
+                            />
                             Processando...
                         </>
                     ) : (

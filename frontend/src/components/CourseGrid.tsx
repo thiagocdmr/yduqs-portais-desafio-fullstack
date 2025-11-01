@@ -9,7 +9,15 @@ export default function CourseGrid() {
         return (
             <Box
                 component="section"
-                className="max-w-[1366px] mx-auto pt-8 pb-14 flex justify-center items-center"
+                sx={{
+                    maxWidth: "1366px",
+                    mx: "auto",
+                    pt: "32px",
+                    pb: "56px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
             >
                 <CircularProgress />
             </Box>
@@ -20,7 +28,7 @@ export default function CourseGrid() {
         return (
             <Box
                 component="section"
-                className="max-w-[1366px] mx-auto pt-8 pb-14"
+                sx={{ maxWidth: "1366px", mx: "auto", pt: "32px", pb: "56px" }}
             >
                 <Alert severity="error">{error}</Alert>
             </Box>
@@ -30,7 +38,7 @@ export default function CourseGrid() {
     return (
         <Box
             component="section"
-            className="max-w-[1366px] mx-auto pt-8 pb-14"
+            sx={{ maxWidth: "1366px", mx: "auto", pt: "32px", pb: "56px" }}
         >
             <Typography
                 sx={{
@@ -42,14 +50,21 @@ export default function CourseGrid() {
                     color: "neutral-dark-pure",
                 }}
             >
-                {courses.length} {courses.length === 1 ? 'opção encontrada' : 'opções encontradas'}
+                {courses.length}{" "}
+                {courses.length === 1
+                    ? "opção encontrada"
+                    : "opções encontradas"}
             </Typography>
-            <Box className="flex mt-4 gap-6 flex-wrap">
+            <Box
+                sx={{
+                    display: "flex",
+                    mt: "16px",
+                    gap: "24px",
+                    flexWrap: "wrap",
+                }}
+            >
                 {courses.map((course) => (
-                    <CourseCard
-                        key={course.id}
-                        course={course}
-                    />
+                    <CourseCard key={course.id} course={course} />
                 ))}
             </Box>
         </Box>

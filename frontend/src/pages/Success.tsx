@@ -25,14 +25,16 @@ export default function Success() {
     return (
         <Box>
             <IntroBanner title="Matrícula realizada com sucesso!" />
-            <Box className="max-w-[1366px] mx-auto py-12 px-4">
+            <Box
+                sx={{ maxWidth: "1366px", mx: "auto", py: "48px", px: "16px" }}
+            >
                 <Box
                     sx={{
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
                         textAlign: "center",
-                        gap: 3,
+                        gap: "12px",
                     }}
                 >
                     <Box
@@ -44,7 +46,7 @@ export default function Success() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            mb: 2,
+                            mb: "8px",
                         }}
                     >
                         <Typography
@@ -63,7 +65,7 @@ export default function Success() {
                             fontSize: "24px",
                             fontWeight: "600",
                             color: "#121212",
-                            mb: 2,
+                            mb: "8px",
                         }}
                     >
                         Sua matrícula foi processada com sucesso!
@@ -79,8 +81,9 @@ export default function Success() {
                             lineHeight: "150%",
                         }}
                     >
-                        Em breve você receberá um e-mail de confirmação com todas as
-                        informações sobre sua matrícula e os próximos passos.
+                        Em breve você receberá um e-mail de confirmação com
+                        todas as informações sobre sua matrícula e os próximos
+                        passos.
                     </Typography>
 
                     <Typography
@@ -91,11 +94,11 @@ export default function Success() {
                             color: "#666666",
                             maxWidth: "600px",
                             lineHeight: "150%",
-                            mt: 2,
+                            mt: "8px",
                         }}
                     >
-                        Não se esqueça de verificar sua caixa de spam caso não encontre
-                        o e-mail na caixa de entrada.
+                        Não se esqueça de verificar sua caixa de spam caso não
+                        encontre o e-mail na caixa de entrada.
                     </Typography>
 
                     <Button
@@ -111,7 +114,7 @@ export default function Success() {
                             borderRadius: "8px",
                             height: "48px",
                             padding: "0 32px",
-                            mt: 4,
+                            mt: "16px",
                             "&:hover": {
                                 backgroundColor: "#0F3A9F",
                             },

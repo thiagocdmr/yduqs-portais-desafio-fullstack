@@ -13,9 +13,9 @@ export default function IntroBanner({
     return (
         <Box
             component="section"
-            className="bg-primary-action-pure text-white py-10"
+            sx={{ backgroundColor: "#144BC8", color: "white", py: "40px" }}
         >
-            <Box className="max-w-[1366px] mx-auto">
+            <Box sx={{ maxWidth: "1366px", mx: "auto" }}>
                 {type !== "EaD" ? (
                     <>
                         {title && (
@@ -52,7 +52,7 @@ export default function IntroBanner({
                     </>
                 ) : (
                     <>
-                        <Box className="px-8">
+                        <Box sx={{ px: "32px" }}>
                             <InfoOutlineIcon
                                 sx={{
                                     width: "24px",

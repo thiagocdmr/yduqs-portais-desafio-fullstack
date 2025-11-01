@@ -34,10 +34,9 @@ export default function DrawerInfo({ title, description }: DrawerInfoProps) {
 
     return (
         <Box
-            className="border rounded-lg"
             sx={{
-                borderStyle: "solid",
-                borderColor: "#E0E0E0",
+                border: "1px solid #E0E0E0",
+                borderRadius: "8px",
                 cursor: "pointer",
                 transition: "all 0.2s",
                 "&:hover": {
@@ -48,8 +47,8 @@ export default function DrawerInfo({ title, description }: DrawerInfoProps) {
             onClick={handleToggle}
         >
             <Box
-                className="p-6"
                 sx={{
+                    p: "24px",
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -80,7 +79,7 @@ export default function DrawerInfo({ title, description }: DrawerInfoProps) {
                 )}
             </Box>
             <Collapse in={isExpanded}>
-                <Box className="px-6 pb-6">
+                <Box sx={{ px: "24px", pb: "24px" }}>
                     <Typography sx={typographyStyles.description}>
                         {description}
                     </Typography>

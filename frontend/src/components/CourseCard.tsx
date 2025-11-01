@@ -80,9 +80,23 @@ export default function CourseCard({ course }: CourseCardProps) {
         openDrawer(course);
     };
     return (
-        <Box className="w-full max-w-[381px]">
-            <Box className="w-full rounded-t-lg bg-primary-action-low flex flex-row items-center align-center py-2 px-4 gap-x-2">
-                <Typography sx={typographyStyles.header}>{course.modality}</Typography>
+        <Box sx={{ width: "100%", maxWidth: "381px" }}>
+            <Box
+                sx={{
+                    borderTopLeftRadius: "8px",
+                    borderTopRightRadius: "8px",
+                    backgroundColor: "#001F66",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    py: "8px",
+                    px: "16px",
+                    gap: "8px",
+                }}
+            >
+                <Typography sx={typographyStyles.header}>
+                    {course.modality}
+                </Typography>
                 {course.type === "Presencial" && course.period && (
                     <>
                         <Typography sx={typographyStyles.header}>|</Typography>
@@ -93,10 +107,24 @@ export default function CourseCard({ course }: CourseCardProps) {
                 )}
             </Box>
 
-            <Box className="w-full bg-primary-action-pure pt-6 pb-4 px-4">
+            <Box
+                sx={{
+                    backgroundColor: "#144BC8",
+                    pt: "24px",
+                    pb: "16px",
+                    px: "16px",
+                }}
+            >
                 {course.type === "Presencial" ? (
                     <>
-                        <Box className="flex items-center mb-2 gap-x-1">
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                mb: "4px",
+                                gap: "4px",
+                            }}
+                        >
                             <Typography sx={typographyStyles.priceLabel}>
                                 De
                             </Typography>
@@ -104,38 +132,52 @@ export default function CourseCard({ course }: CourseCardProps) {
                                 sx={typographyStyles.priceLabelStrikethrough}
                             >
                                 R$ {"  "}
-                                {(course.originalPrice || 0).toLocaleString("pt-BR", {
-                                    minimumFractionDigits: 2,
-                                })}
+                                {(course.originalPrice || 0).toLocaleString(
+                                    "pt-BR",
+                                    {
+                                        minimumFractionDigits: 2,
+                                    }
+                                )}
                             </Typography>
                             <Typography sx={typographyStyles.priceLabel}>
                                 por até
                             </Typography>
                         </Box>
                         <Box>
-                            <Box className="flex items-baseline gap-1">
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "baseline",
+                                    gap: "4px",
+                                }}
+                            >
                                 <Typography sx={typographyStyles.installments}>
                                     {course.installments}x
                                 </Typography>
                                 <Typography sx={typographyStyles.priceMain}>
                                     R${" "}
-                                    {(course.installmentPrice || 0).toLocaleString("pt-BR", {
+                                    {(
+                                        course.installmentPrice || 0
+                                    ).toLocaleString("pt-BR", {
                                         minimumFractionDigits: 2,
                                     })}
                                 </Typography>
                             </Box>
                         </Box>
-                        <Box className="mb-6">
+                        <Box sx={{ mb: "24px" }}>
                             <Typography sx={typographyStyles.priceSecondary}>
                                 à vista R${" "}
-                                {(course.cashPrice || 0).toLocaleString("pt-BR", {
-                                    minimumFractionDigits: 2,
-                                })}
+                                {(course.cashPrice || 0).toLocaleString(
+                                    "pt-BR",
+                                    {
+                                        minimumFractionDigits: 2,
+                                    }
+                                )}
                             </Typography>
                         </Box>
                     </>
                 ) : (
-                    <Box className="mb-6">
+                    <Box sx={{ mb: "24px" }}>
                         <InfoOutlineIcon
                             sx={{
                                 width: "21.5px",
@@ -144,8 +186,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                             }}
                         />
                         <Typography
-                            className="pt-2"
-                            sx={typographyStyles.description}
+                            sx={{ ...typographyStyles.description, pt: "8px" }}
                         >
                             {course.description}
                         </Typography>
@@ -155,9 +196,10 @@ export default function CourseCard({ course }: CourseCardProps) {
                 <Button
                     variant="contained"
                     fullWidth
-                    className="b-4 w-[333px] h-[48px]"
                     onClick={handleAdvance}
                     sx={{
+                        width: "100%",
+                        height: "48px",
                         backgroundColor: "#EE325D",
                         color: "white",
                         fontFamily: "Inter",
@@ -175,16 +217,29 @@ export default function CourseCard({ course }: CourseCardProps) {
                 </Button>
             </Box>
 
-            <Box className="px-4 py-6 border border-rounded rounded-b-lg border-primary-action-pure">
+            <Box
+                sx={{
+                    p: "16px",
+                    border: "1px solid #144BC8",
+                    borderBottomLeftRadius: "8px",
+                    borderBottomRightRadius: "8px",
+                }}
+            >
                 <Typography
-                    className="text-neutral-dark-pure uppercase"
-                    sx={typographyStyles.locationTitle}
+                    sx={{
+                        ...typographyStyles.locationTitle,
+                        color: "#121212",
+                        textTransform: "uppercase",
+                    }}
                 >
                     {course.location.city} - {course.location.unit}
                 </Typography>
                 <Typography
-                    className="text-neutral-dark-low uppercase"
-                    sx={typographyStyles.locationAddress}
+                    sx={{
+                        ...typographyStyles.locationAddress,
+                        color: "#3D3D3D",
+                        textTransform: "uppercase",
+                    }}
                 >
                     {course.location.address}
                 </Typography>

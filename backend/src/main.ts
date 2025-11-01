@@ -11,9 +11,13 @@ async function bootstrap() {
     logger: WinstonModule.createLogger(winstonConfig),
   });
 
-  // Enable CORS
+  // Enable CORS - permite acesso do frontend local e mobile na rede
+  const corsOrigins = process.env.CORS_ORIGINS
+    ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
+    : ['http://localhost:5173'];
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: corsOrigins,
     credentials: true,
   });
 
@@ -39,8 +43,8 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
-  
+  await app.listen(port, '0.0.0.0'); // Escuta em todas as interfaces de rede
+
   // Os logs de inicialização já são exibidos automaticamente pelo Winston
   // configurado como logger global acima
 }

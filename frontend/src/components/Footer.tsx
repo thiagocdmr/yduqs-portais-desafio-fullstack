@@ -30,18 +30,28 @@ export default function Footer() {
     const isStudentForm = location.pathname === "/student-form";
 
     const contactBox = (
-        <Box className="flex gap-14">
-            <Box className="flex items-center gap-3">
+        <Box sx={{ display: "flex", gap: "56px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <Box component="img" src={phoneIcon} alt="Telefone" />
-                <Typography sx={contactTypographyStyle}>0800 771 5055</Typography>
+                <Typography sx={contactTypographyStyle}>
+                    0800 771 5055
+                </Typography>
             </Box>
             <Box
                 component="a"
                 href="#"
-                className="flex items-center gap-3 transition-all duration-200 ease-in-out hover:scale-105"
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    transition: "all 0.2s ease-in-out",
+                    "&:hover": { transform: "scale(1.05)" },
+                }}
             >
                 <Box component="img" src={whatsappIcon} alt="WhatsApp" />
-                <Typography sx={contactTypographyStyle}>Precisa de ajuda?</Typography>
+                <Typography sx={contactTypographyStyle}>
+                    Precisa de ajuda?
+                </Typography>
             </Box>
         </Box>
     );
@@ -49,10 +59,20 @@ export default function Footer() {
     return (
         <Box
             component="footer"
-            className="bg-primary-action-low/90 text-white py-6"
+            sx={{
+                backgroundColor: "rgba(0, 31, 102, 0.9)",
+                color: "white",
+                py: "24px",
+            }}
         >
-            <Box className="max-w-[1366px] mx-auto">
-                <Box className="flex items-center justify-between">
+            <Box sx={{ maxWidth: "1366px", mx: "auto" }}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                    }}
+                >
                     {!isStudentForm && (
                         <Link to="/">
                             <Box
@@ -65,16 +85,35 @@ export default function Footer() {
                     )}
                     {contactBox}
                     {isStudentForm && (
-                        <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                            <Link to="/privacy-policy" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-                                <Typography sx={{...typographyStyle, fontSize: "16px", lineHeight: "150%"}}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "16px",
+                            }}
+                        >
+                            <Link
+                                to="/privacy-policy"
+                                style={{
+                                    textDecoration: "none",
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        ...typographyStyle,
+                                        fontSize: "16px",
+                                        lineHeight: "150%",
+                                    }}
+                                >
                                     Política de privacidade
                                 </Typography>
                             </Link>
-                            <Typography sx={{...typographyStyle}}>
+                            <Typography sx={{ ...typographyStyle }}>
                                 |
                             </Typography>
-                            <Typography sx={{...typographyStyle}}>
+                            <Typography sx={{ ...typographyStyle }}>
                                 Estácio Brasil - Todos os direitos reservados
                             </Typography>
                         </Box>

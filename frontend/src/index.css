@@ -1,9 +1,13 @@
-@import "tailwindcss";
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
 
-@theme {
-  --color-primary-action-pure: #144BC8;
-  --color-primary-action-low: #001F66;
-  --color-secondary-action-pure: #EE325D;
-  --color-neutral-dark-pure: #121212;
-  --color-neutral-dark-low: #3D3D3D;
+:root {
+    --color-primary-action-pure: #144bc8;
+    --color-primary-action-low: #001f66;
+    --color-secondary-action-pure: #ee325d;
+    --color-neutral-dark-pure: #121212;
+    --color-neutral-dark-low: #3d3d3d;
 }

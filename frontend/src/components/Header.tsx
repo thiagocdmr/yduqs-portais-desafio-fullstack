@@ -4,7 +4,7 @@ import estacioLogo from '../assets/logos/estacio_black_logo.svg';
 
 export default function Header() {
     return (
-        <Box component="header" className="py-6 max-w-[1366px] mx-auto">
+        <Box component="header" sx={{ py: '24px', maxWidth: '1366px', mx: 'auto' }}>
             <Link to="/">
                 <Box
                     component="img"

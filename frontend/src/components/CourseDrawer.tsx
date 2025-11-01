@@ -37,8 +37,24 @@ export default function CourseDrawer() {
                 },
             }}
         >
-            <Box className="h-full flex flex-col">
-                <Box className="flex items-center justify-between pl-8 pr-4 py-6 border-b border-gray-200">
+            <Box
+                sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        pl: "32px",
+                        pr: "16px",
+                        py: "24px",
+                        borderBottom: "1px solid #E5E7EB",
+                    }}
+                >
                     <Typography sx={typographyStyles.title}>
                         Mais detalhes
                     </Typography>
@@ -55,7 +71,15 @@ export default function CourseDrawer() {
                     </IconButton>
                 </Box>
 
-                <Box className="flex-1 overflow-y-auto flex flex-col gap-4">
+                <Box
+                    sx={{
+                        flex: 1,
+                        overflowY: "auto",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "16px",
+                    }}
+                >
                     {selectedCourse.type === "Presencial" ? (
                         <InstallmentPlanList courseId={selectedCourse.id} />
                     ) : (
@@ -65,22 +89,28 @@ export default function CourseDrawer() {
                         />
                     )}
 
-                    <Box className="px-8">
-                        <Box className="mt-4" />
+                    <Box sx={{ px: "32px" }}>
+                        <Box sx={{ mt: "16px" }} />
                         <DrawerInfo
                             title="Sobre a bolsa incentivo"
                             description="Conheça os benefícios e condições da bolsa de estudos disponível para este curso."
                         />
-                        <Box className="mt-6" />
+                        <Box sx={{ mt: "24px" }} />
                         <DrawerInfo
                             title="Resumo das suas escolhas"
                             description="Veja um resumo completo das opções selecionadas para sua matrícula."
                         />
-                        <Box className="mt-6" />
+                        <Box sx={{ mt: "24px" }} />
                     </Box>
                 </Box>
 
-                <Box className="px-8 py-6 border-t border-gray-200">
+                <Box
+                    sx={{
+                        px: "32px",
+                        py: "24px",
+                        borderTop: "1px solid #E5E7EB",
+                    }}
+                >
                     <Button
                         variant="contained"
                         fullWidth
