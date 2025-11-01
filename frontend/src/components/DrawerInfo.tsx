@@ -48,7 +48,7 @@ export default function DrawerInfo({ title, description }: DrawerInfoProps) {
         >
             <Box
                 sx={{
-                    p: "24px",
+                    p: { xs: "16px", md: "24px" },
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",

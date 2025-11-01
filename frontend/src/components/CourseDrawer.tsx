@@ -89,13 +89,13 @@ export default function CourseDrawer() {
                         />
                     )}
 
-                    <Box sx={{ px: "32px" }}>
-                        <Box sx={{ mt: "16px" }} />
+                    <Box sx={{ px: { xs: "16px", md: "32px" } }}>
+                        <Box sx={{ mt: { xs: "8px", md: "16px" } }} />
                         <DrawerInfo
                             title="Sobre a bolsa incentivo"
                             description="Conheça os benefícios e condições da bolsa de estudos disponível para este curso."
                         />
-                        <Box sx={{ mt: "24px" }} />
+                        <Box sx={{ mt: { xs: "16px", md: "24px" } }} />
                         <DrawerInfo
                             title="Resumo das suas escolhas"
                             description="Veja um resumo completo das opções selecionadas para sua matrícula."
@@ -106,8 +106,8 @@ export default function CourseDrawer() {
 
                 <Box
                     sx={{
-                        px: "32px",
-                        py: "24px",
+                        px: { xs: "16px", md: "32px" },
+                        py: { xs: "16px", md: "24px" },
                         borderTop: "1px solid #E5E7EB",
                     }}
                 >
@@ -123,7 +123,7 @@ export default function CourseDrawer() {
                             textTransform: "none",
                             lineHeight: "100%",
                             borderRadius: "8px",
-                            height: "48px",
+                            padding: "16px 0px",
                             "&:hover": {
                                 backgroundColor: "#DC2626",
                             },

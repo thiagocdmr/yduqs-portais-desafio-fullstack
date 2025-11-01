@@ -57,7 +57,7 @@ export default function IntroBanner({
                     </>
                 ) : (
                     <>
-                        <Box sx={{ px: "32px" }}>
+                        <Box sx={{ px: { xs: "0px", md: "32px" } }}>
                             <InfoOutlineIcon
                                 sx={{
                                     width: "24px",
