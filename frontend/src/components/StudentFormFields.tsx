@@ -61,7 +61,7 @@ const typographyStyles = {
 };
 
 const textFieldStyles = {
-    width: "680px",
+    width: { xs: "100%", md: "680px" },
     "& .MuiOutlinedInput-root": {
         fontFamily: "Inter",
         fontSize: "16px",
@@ -284,8 +284,8 @@ export default function StudentFormFields() {
             onSubmit={handleSubmit}
             sx={{
                 maxWidth: "1366px",
-                mx: "auto",
-                py: "32px",
+                mx: { xs: "16px", md: "auto" },
+                py: { xs: "16px", md: "32px" },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
@@ -387,7 +387,7 @@ export default function StudentFormFields() {
             <Box
                 sx={{
                     mt: "24px",
-                    width: "680px",
+                    width: { xs: "100%", md: "680px" },
                     display: "flex",
                     alignItems: "flex-start",
                 }}
@@ -437,7 +437,7 @@ export default function StudentFormFields() {
             <Box
                 sx={{
                     mt: "24px",
-                    width: "680px",
+                    width: { xs: "100%", md: "680px" },
                     display: "flex",
                     alignItems: "flex-start",
                 }}
